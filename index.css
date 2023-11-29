@@ -1,0 +1,168 @@
+@media only screen and (max-width: 975px) {}
+
+:root {
+    --primaryColor: #00f2ff;
+    --accentColor: #1b4547;
+    --offBlack: #10021c;
+    --offWhite: #ecfeff;
+    --gray: #808080;
+}
+
+body {
+    background-color: var(--offBlack);
+    color: var(--primaryColor);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1rem;
+    max-width: 50rem;
+    margin: auto;
+}
+
+header {
+    display: none;
+}
+
+.build-instructions {
+    border-radius: 5px;
+    border: solid 0;
+    padding: 1rem;
+    background-color: #baafaf;
+    height: 7rem;
+    max-width: 50rem;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: "Source Pro Mono", monospace;
+    transition: all linear 0.2s;
+}
+
+.button-area {
+    margin: 1rem auto;
+}
+
+.result-area {
+    background-color: var(--offWhite);
+    color: var(--accentColor);
+    padding: 1rem;
+    font-family: serif;
+    border-radius: 5px;
+    border: solid 0;
+    padding: 1rem;
+    max-width: 50rem;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.segment {
+    display: block;
+}
+
+p.added {
+    font-style: italic;
+    margin: auto;
+    padding: 0 2rem;
+}
+
+.fade-out {
+    color: transparent;
+    transition: all linear 0.5s;
+}
+
+.action-message {
+    font-weight: bold;
+}
+
+.fade {
+    animation: fade-in 2s;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-o-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@-ms-keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
