@@ -1,11 +1,12 @@
 @media only screen and (max-width: 975px) {}
 
 :root {
-    --primaryColor: #00f2ff;
+    --primaryColor: #01c2cc;
     --accentColor: #1b4547;
     --offBlack: #10021c;
+    --offLighterBlack: #1b0430;
     --offWhite: #ecfeff;
-    --gray: #808080;
+    --gray: #cdd0d1;
 }
 
 body {
@@ -17,22 +18,47 @@ body {
     margin: auto;
 }
 
+p {
+    margin: 0 0 1rem 0
+}
+
+
 header {
     display: none;
+}
+
+summary {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.help {
+    border-radius: 5px;
+    border: solid 0;
+    padding: 1rem;
+    background-color: var(--offLighterBlack);
+    margin: 10px 0
+}
+
+.highlight {
+    display: inline-block;
+    background-color: var(--gray);
+    color: var(--accentColor);
+    padding: 0 .2rem
 }
 
 .build-instructions {
     border-radius: 5px;
     border: solid 0;
     padding: 1rem;
-    background-color: #baafaf;
-    height: 7rem;
+    background-color: var(--gray);
+    height: 15rem;
     max-width: 50rem;
     width: 100%;
     margin: 0;
     box-sizing: border-box;
     font-size: 1rem;
-    font-family: "Source Pro Mono", monospace;
+    font-family: monospace;
     transition: all linear 0.2s;
 }
 
