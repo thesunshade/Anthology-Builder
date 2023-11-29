@@ -124,6 +124,7 @@ copyInstructionsButton.addEventListener("click", () => {
 // copy results button
 copyResultButton.addEventListener("click", () => {
   navigator.clipboard.writeText(outputTextArea.innerHTML);
+
   const actionMessage = document.querySelector("#action-message");
   actionMessage.classList.add("fade");
   actionMessage.innerText = "Copied!";
