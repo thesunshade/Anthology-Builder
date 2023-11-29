@@ -4,6 +4,7 @@ const buildButton = document.querySelector("#build-button");
 const copyInstructionsButton = document.querySelector("#copy-instructions");
 const copyResultButton = document.querySelector("#copy-result");
 const clearButton = document.querySelector("#clear-input");
+const actionMessage = document.querySelector("#action-message");
 
 function parseInstructions() {
   const instructions = buildInstructions.value.split(/\r?\n/).map(line => line.trim());
@@ -17,10 +18,10 @@ buildButton.addEventListener("click", () => {
     console.log(!markupCode(instruction) + " " + instruction);
     if (!markupCode(instruction)) {
       // Make the first API call (bilara)
-      const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${instruction}/sujato?lang=en`).then(response => response.json());
+      const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${instruction.toLowerCase()}/sujato?lang=en`).then(response => response.json());
 
       // Make the second API call (suttaplex)
-      const suttaplexPromise = fetch(`https://suttacentral.net/api/suttaplex/${instruction}/?lang=en`).then(response => response.json());
+      const suttaplexPromise = fetch(`https://suttacentral.net/api/suttaplex/${instruction.toLowerCase()}/?lang=en`).then(response => response.json());
 
       // Return a promise that resolves to the final object
       return Promise.all([bilaraPromise, suttaplexPromise]).then(([bilaraData, suttaplexData]) => ({
@@ -99,15 +100,6 @@ function buildAdditionalText(response) {
     return ERROR;
   }
 }
-
-// action message
-const actionMessage = document.querySelector("#action-message");
-// actionMessage.innerText = "Linked up!";
-// actionMessage.classList.add("fade");
-// setTimeout(() => {
-//   actionMessage.innerText = "";
-//   actionMessage.classList.remove("fade");
-// }, 1900);
 
 // copy build instruction button
 copyInstructionsButton.addEventListener("click", () => {
