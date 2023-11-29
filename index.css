@@ -58,7 +58,7 @@ header {
     box-sizing: border-box;
 }
 
-.segment {
+blockquote .segment {
     display: block;
 }
 
