@@ -1,21 +1,24 @@
 const buildInstructions = document.querySelector("#build-instructions");
-const outputTextArea = document.querySelector("#output-text");
+const resultsArea = document.querySelector("#result-area");
 const buildButton = document.querySelector("#build-button");
 const copyInstructionsButton = document.querySelector("#copy-instructions");
 const copyResultButton = document.querySelector("#copy-result");
 const clearButton = document.querySelector("#clear-input");
 const actionMessage = document.querySelector("#action-message");
 
-function parseInstructions() {
-  const instructions = buildInstructions.value.split(/\r?\n/).map(line => line.trim());
+function parseInstructions(buildInstructions) {
+  const instructions = buildInstructions.value
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line !== "");
   return instructions;
 }
 
 buildButton.addEventListener("click", () => {
-  const instructions = parseInstructions();
-  console.log(instructions);
+  const instructions = parseInstructions(buildInstructions);
+  resultsArea.innerHTML = "";
+
   const requests = instructions.map(instruction => {
-    console.log(!markupCode(instruction) + " " + instruction);
     if (!markupCode(instruction)) {
       // Make the first API call (bilara)
       const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${instruction.toLowerCase()}/sujato?lang=en`).then(response => response.json());
@@ -43,12 +46,27 @@ buildButton.addEventListener("click", () => {
       for (let i = 0; i < data.length; i++) {
         const response = data[i];
         if (!response.error) {
+          if (response.bilara.msg === "Not Found") {
+            console.log(instructions[i]);
+            resultsArea.innerHTML = `<p class="error">The line:</p>
+            <pre>${instructions[i]}</pre>
+            <p class="error">is either an incorrect sutta ID or it is added text with a missing prefix (h1, h2, etc.)</p>`;
+          }
           anthologyText += buildSutta(response);
         } else {
           anthologyText += buildAdditionalText(response);
         }
       }
-      outputTextArea.innerHTML = anthologyText;
+      resultsArea.innerHTML = anthologyText;
+
+      // Select all <header> elements
+      var headerElements = document.querySelectorAll("header");
+
+      // Loop through each <header> element and remove it
+      headerElements.forEach(function (headerElement) {
+        headerElement.remove();
+      });
+
       // end processing
     })
     .catch(error => {
@@ -62,6 +80,7 @@ function buildSutta(response) {
   const suttaplex = response.suttaplex[0];
   console.log(bilara);
   console.log(response);
+
   const { html_text, translation_text, root_text, keys_order } = bilara;
 
   let htmlText = "";
@@ -72,6 +91,10 @@ function buildSutta(response) {
       translation_text[segment] = "";
     }
     let [openHtml, closeHtml] = html_text[segment].split(/{}/);
+
+    if (openHtml == "<span class='verse-line'>") {
+      openHtml = "<br>" + openHtml;
+    }
 
     htmlText += `${openHtml}<span class="segment" id ="${segment}" class="eng-lang" lang="en">${translation_text[segment]}</span>${closeHtml}\n\n`;
   });
@@ -113,9 +136,47 @@ copyInstructionsButton.addEventListener("click", () => {
   }, 1900);
 });
 
+const saveInstructionsButton = document.querySelector("#save-instructions-button");
+const saveResultsButton = document.querySelector("#save-result-button");
+
+function saveToFile(contentElement, contentProperty) {
+  const fileName = prompt("Enter a name for the file:");
+  if (fileName) {
+    const fileContent = contentProperty === "value" ? contentElement.value : contentElement.innerHTML;
+    const blob = new Blob([fileContent], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName + ".txt";
+    document.body.appendChild(a);
+    a.click();
+
+    // Cleanup
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    const actionMessage = document.querySelector("#action-message");
+    actionMessage.classList.add("fade");
+    actionMessage.innerText = "File saved!";
+    setTimeout(() => {
+      actionMessage.innerText = "";
+      actionMessage.classList.remove("fade");
+    }, 1900);
+  }
+}
+
+saveInstructionsButton.addEventListener("click", () => {
+  saveToFile(buildInstructions, "value");
+});
+saveResultsButton.addEventListener("click", () => {
+  console.log(resultsArea);
+  saveToFile(resultsArea, "innerHTML");
+});
+
 // copy results button
 copyResultButton.addEventListener("click", () => {
-  navigator.clipboard.writeText(outputTextArea.innerHTML);
+  navigator.clipboard.writeText(resultsArea.innerHTML);
 
   const actionMessage = document.querySelector("#action-message");
   actionMessage.classList.add("fade");
@@ -131,7 +192,7 @@ clearButton.addEventListener("click", () => {
   buildInstructions.classList.add("fade-out");
   //   outputTextArea.classList.add("fade-out");
 
-  outputTextArea.innerText = "";
+  resultsArea.innerText = "";
   setTimeout(() => {
     buildInstructions.value = "";
     buildInstructions.classList.remove("fade-out");

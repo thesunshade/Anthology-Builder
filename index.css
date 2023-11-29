@@ -1,4 +1,11 @@
-@media only screen and (max-width: 975px) {}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&family=Roboto+Serif:ital,opsz@0,8..144;1,8..144&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Roboto+Serif:ital,opsz@0,8..144;1,8..144&display=swap'); */
+
+
+
+
+
 
 :root {
     --primaryColor: #01c2cc;
@@ -10,6 +17,7 @@
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     background-color: var(--offBlack);
     color: var(--primaryColor);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -18,14 +26,25 @@ body {
     margin: auto;
 }
 
+code,
+pre {
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: 'Fira Code', monospace;
+}
+
+.help pre {
+    background-color: var(--offBlack);
+    padding: 1rem
+}
+
 p {
     margin: 0 0 1rem 0
 }
 
 
-header {
+/* header {
     display: none;
-}
+} */
 
 summary {
     margin-bottom: 10px;
@@ -42,12 +61,16 @@ summary {
 
 .highlight {
     display: inline-block;
+    border: solid 0px;
+    border-radius: 5px;
     background-color: var(--gray);
     color: var(--accentColor);
     padding: 0 .2rem
 }
 
 .build-instructions {
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: 'Fira Code', monospace;
     border-radius: 5px;
     border: solid 0;
     padding: 1rem;
@@ -70,11 +93,22 @@ summary {
     margin-top: 10px;
 }
 
+.error {
+    color: rgb(193, 1, 1);
+    font-weight: bold;
+}
+
+.result-area pre {
+    background-color: var(--gray);
+    padding: .5rem;
+    color: var(--offBlack);
+}
+
 .result-area {
+    font-family: 'Roboto Serif', serif;
     background-color: var(--offWhite);
     color: var(--accentColor);
     padding: 1rem;
-    font-family: serif;
     border-radius: 5px;
     border: solid 0;
     padding: 1rem;
@@ -82,10 +116,6 @@ summary {
     width: 100%;
     margin: 0;
     box-sizing: border-box;
-}
-
-blockquote .segment {
-    display: block;
 }
 
 p.added {
@@ -194,5 +224,11 @@ p.added {
 
     100% {
         opacity: 0;
+    }
+}
+
+@media only screen and (max-width: 775px) {
+    .result-area blockquote {
+        margin-left: 1rem
     }
 }
