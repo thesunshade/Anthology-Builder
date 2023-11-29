@@ -40,6 +40,10 @@ header {
     margin: 1rem auto;
 }
 
+.row2 {
+    margin-top: 10px;
+}
+
 .result-area {
     background-color: var(--offWhite);
     color: var(--accentColor);
