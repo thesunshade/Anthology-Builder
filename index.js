@@ -1,3 +1,10 @@
+import { buildAdditionalText } from "./functions/buildAdditionalText.js";
+import { buildSutta } from "./functions/buildSutta.js";
+import { generateTableOfContents } from "./functions/generateTableOfContents.js";
+import parseInstructions from "./functions/parseInstructions.js";
+import { saveToFile } from "./functions/saveToFile.js";
+import { markupCode } from "./functions/markupCode.js";
+
 const buildInstructions = document.querySelector("#build-instructions");
 const resultsArea = document.querySelector("#result-area");
 const buildButton = document.querySelector("#build-button");
@@ -5,28 +12,6 @@ const copyInstructionsButton = document.querySelector("#copy-instructions");
 const copyResultButton = document.querySelector("#copy-result");
 const clearButton = document.querySelector("#clear-input");
 const actionMessage = document.querySelector("#action-message");
-
-function parseInstructions(buildInstructions) {
-  const specialPrefixes = ["DN", "MN", "SN", "AN", "Kp", "Dhp", "Ud", "Snp", "Thag", "Thig"];
-
-  const instructions = buildInstructions.value
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .filter(line => line !== "")
-    .filter(line => !line.startsWith("(")) // Filter out lines starting with '('
-    .map(line => {
-      for (const prefix of specialPrefixes) {
-        if (line.toUpperCase().startsWith(prefix.toUpperCase())) {
-          const prefixLength = prefix.length;
-          const trimmedLine = line.substring(prefixLength).trimLeft();
-          return `${prefix}${trimmedLine}`;
-        }
-      }
-      return line;
-    });
-  console.log(instructions);
-  return instructions;
-}
 
 buildButton.addEventListener("click", () => {
   const instructions = parseInstructions(buildInstructions);
@@ -91,7 +76,7 @@ buildButton.addEventListener("click", () => {
       removeElements("header");
       removeElements("p.endkanda");
       removeElements("blockquote.uddanagatha");
-
+      generateTableOfContents();
       // end processing
     })
     .catch(error => {
@@ -99,52 +84,6 @@ buildButton.addEventListener("click", () => {
       console.error("Error fetching data:", error);
     });
 });
-
-function buildSutta(response) {
-  const bilara = response.bilara;
-  const suttaplex = response.suttaplex[0];
-  const { html_text, translation_text, root_text, keys_order } = bilara;
-
-  let htmlText = "";
-  htmlText += `<h3>${suttaplex.acronym} ${suttaplex.original_title}: ${suttaplex.translated_title}</h3>`;
-
-  keys_order.forEach(segment => {
-    if (translation_text[segment] === undefined) {
-      translation_text[segment] = "";
-    }
-    let [openHtml, closeHtml] = html_text[segment].split(/{}/);
-
-    if (openHtml == "<span class='verse-line'>") {
-      openHtml = "<br>" + openHtml;
-    }
-
-    htmlText += `${openHtml}<span class="segment" id ="${segment}" class="eng-lang" lang="en">${translation_text[segment]}</span>${closeHtml}\n\n`;
-  });
-
-  return htmlText;
-}
-
-function markupCode(text) {
-  const markup = ["p", "h1", "h2"];
-  // Convert the text to lowercase for case-insensitive comparison
-  const lowerText = text.toLowerCase();
-  // Check if any markup item is at the beginning of the text
-  const foundMarkup = markup.find(item => lowerText.startsWith(item));
-  return foundMarkup;
-}
-
-function buildAdditionalText(response) {
-  const text = response.content;
-  const foundMarkup = markupCode(text);
-
-  if (foundMarkup) {
-    // If yes, add HTML markup
-    return `<${foundMarkup} class="added">${text.slice(foundMarkup.length).trim()}</${foundMarkup}>`;
-  } else {
-    // If not, return the original text
-    return ERROR;
-  }
-}
 
 // copy build instruction button
 copyInstructionsButton.addEventListener("click", () => {
@@ -160,35 +99,6 @@ copyInstructionsButton.addEventListener("click", () => {
 
 const saveInstructionsButton = document.querySelector("#save-instructions-button");
 const saveResultsButton = document.querySelector("#save-result-button");
-
-function saveToFile(contentElement, contentProperty) {
-  const fileName = prompt("Enter a name for the file:");
-  if (fileName) {
-    const fileContent = contentProperty === "value" ? contentElement.value : contentElement.innerHTML;
-    const blob = new Blob([fileContent], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    let extension = ".txt";
-    if (contentProperty == "innerHTML") extension = ".html";
-    a.download = fileName + extension;
-    document.body.appendChild(a);
-    a.click();
-
-    // Cleanup
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    const actionMessage = document.querySelector("#action-message");
-    actionMessage.classList.add("fade");
-    actionMessage.innerText = "File saved!";
-    setTimeout(() => {
-      actionMessage.innerText = "";
-      actionMessage.classList.remove("fade");
-    }, 1900);
-  }
-}
 
 saveInstructionsButton.addEventListener("click", () => {
   saveToFile(buildInstructions, "value");

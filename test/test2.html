@@ -64,17 +64,14 @@
     </p>
     <h3>Second sub sub</h3>
 
-    <!-- Table of Contents container -->
-    <div id="tableOfContents"></div>
-
     <script>
       // Function to generate Table of Contents
       function generateTableOfContents() {
         const headings = document.querySelectorAll("h1, h2, h3");
-        const tocContainer = document.getElementById("tableOfContents");
+        const firstElement = document.body.firstElementChild; // Get the first element on the page
 
-        if (headings.length === 0 || !tocContainer) {
-          console.error("No headings or Table of Contents container found.");
+        if (headings.length === 0 || !firstElement) {
+          console.error("No headings or first element found.");
           return;
         }
 
@@ -82,7 +79,12 @@
         let currentList = tocList;
         let lastLevel = 1;
 
-        headings.forEach(heading => {
+        headings.forEach((heading, index) => {
+          // Add IDs to headings if they don't have one
+          if (!heading.id) {
+            heading.id = "heading" + (index + 1);
+          }
+
           const level = parseInt(heading.tagName.charAt(1));
 
           if (level > lastLevel) {
@@ -100,7 +102,7 @@
           // Create list item and anchor for each heading
           const listItem = document.createElement("li");
           const anchor = document.createElement("a");
-          anchor.href = "#" + heading.textContent.replace(/\s+/g, "-").toLowerCase();
+          anchor.href = "#" + heading.id;
           anchor.textContent = heading.textContent;
           listItem.appendChild(anchor);
           currentList.appendChild(listItem);
@@ -109,12 +111,14 @@
           lastLevel = level;
         });
 
-        // Append the generated Table of Contents to the container
-        tocContainer.appendChild(tocList);
+        // Insert the generated Table of Contents as the first element on the page
+        firstElement.insertAdjacentElement("beforebegin", tocList);
       }
 
       // Call the function when the DOM is ready
       document.addEventListener("DOMContentLoaded", generateTableOfContents);
     </script>
+
+    <!-- Continue with the rest of the content -->
   </body>
 </html>
