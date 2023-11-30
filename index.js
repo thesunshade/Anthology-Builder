@@ -16,6 +16,12 @@ function parseInstructions(buildInstructions) {
 
 buildButton.addEventListener("click", () => {
   const instructions = parseInstructions(buildInstructions);
+  console.log(!buildInstructions.value);
+  if (!buildInstructions.value) {
+    resultsArea.innerHTML = `<p class="error">You'll need to add some build instruction first. Click on Help to learn more.</p>`;
+
+    return;
+  }
   resultsArea.innerHTML = "";
 
   const requests = instructions.map(instruction => {
@@ -80,9 +86,6 @@ buildButton.addEventListener("click", () => {
 function buildSutta(response) {
   const bilara = response.bilara;
   const suttaplex = response.suttaplex[0];
-  console.log(bilara);
-  console.log(response);
-
   const { html_text, translation_text, root_text, keys_order } = bilara;
 
   let htmlText = "";
