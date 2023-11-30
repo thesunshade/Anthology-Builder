@@ -198,7 +198,7 @@ clearButton.addEventListener("click", () => {
   buildInstructions.classList.add("fade-out");
   //   outputTextArea.classList.add("fade-out");
 
-  resultsArea.innerText = "";
+  resultsArea.innerHTML = "<i>Your anthology will appear here</i>";
   setTimeout(() => {
     buildInstructions.value = "";
     buildInstructions.classList.remove("fade-out");

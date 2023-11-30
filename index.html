@@ -22,6 +22,30 @@
 
   <body>
     <p><img width="20" src="favicon.png" /> Enter the anthology build instructions:</p>
+    <textarea
+      id="build-instructions"
+      class="build-instructions"
+      spellcheck="false"
+      placeholder="For example:
+      
+h1 My Anthology
+mn1
+kp9"></textarea>
+    <div class="button-area">
+      <div class="row1">
+        <button id="build-button">Build!</button>
+        <button id="clear-input" class="right-button">Clear</button>
+        <span class="action-message" id="action-message"></span>
+      </div>
+      <div class="row2">
+        <button id="copy-instructions">Copy build instruction</button>
+        <button id="save-instructions-button">Save build instruction</button>
+      </div>
+      <div class="row3">
+        <button id="copy-result">Copy HTML result</button>
+        <button id="save-result-button">Save HTML result</button>
+      </div>
+    </div>
     <details>
       <summary><span class="button">Help</span></summary>
       <div class="help">
@@ -43,29 +67,6 @@ dhp1-20</pre
         >
       </div>
     </details>
-    <textarea
-      id="build-instructions"
-      class="build-instructions"
-      spellcheck="false"
-      placeholder="For example:
-h1 My Anthology
-mn1
-kp9"></textarea>
-    <div class="button-area">
-      <div class="row1">
-        <button id="build-button">Build!</button>
-        <button id="clear-input" class="right-button">Clear</button>
-        <span class="action-message" id="action-message"></span>
-      </div>
-      <div class="row2">
-        <button id="copy-instructions">Copy build instruction</button>
-        <button id="save-instructions-button">Save build instruction</button>
-      </div>
-      <div class="row3">
-        <button id="copy-result">Copy HTML result</button>
-        <button id="save-result-button">Save HTML result</button>
-      </div>
-    </div>
     <div id="result-area" class="result-area"><i>Your anthology will appear here</i></div>
     <script type="module" src="index.js"></script>
   </body>
