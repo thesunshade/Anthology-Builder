@@ -21,18 +21,18 @@
   </head>
 
   <body>
-    <p>Enter the anthology build instructions:</p>
+    <p><img width="20" src="favicon.png" /> Enter the anthology build instructions:</p>
     <details>
-      <summary>Help</summary>
+      <summary><span class="button">Help</span></summary>
       <div class="help">
         <p>This tool will create an anthology of suttas from Bhante Sujato's translations based on your instructions.</p>
-        <h3>Including Suttas</h3>
+        <h2>Including Suttas</h2>
         <p>You will need to use the exact sutta id found in the url when viewing the sutta you want on SuttaCentral.com. For example, to include the first chapter of the Dhammapada, look at the url:</p>
         <p>
           <code>https://suttacentral.net/<span class="highlight">dhp1-20</span>/en/sujato</code>
         </p>
-        <p>The highlighted part, <code>dhp1-20</code> is what you have to use.</p>
-        <h3>Including custom text</h3>
+        <p>The highlighted part, <code>dhp1-20</code> is what you have to use. Put one sutta ID on each line.</p>
+        <h2>Including custom text</h2>
         <p>There are three types of custom text that can be included: heading leve 1 (h1), heading level 2 (h2), and paragraph text (p). Here is an example of all three:</p>
         <pre>
 h1 My great Anthology
@@ -43,7 +43,14 @@ dhp1-20</pre
         >
       </div>
     </details>
-    <textarea id="build-instructions" class="build-instructions" spellcheck="false"></textarea>
+    <textarea
+      id="build-instructions"
+      class="build-instructions"
+      spellcheck="false"
+      placeholder="For example:
+h1 My Anthology
+mn1
+kp9"></textarea>
     <div class="button-area">
       <div class="row1">
         <button id="build-button">Build!</button>
@@ -57,9 +64,7 @@ dhp1-20</pre
         <span class="action-message" id="action-message"></span>
       </div>
     </div>
-    <div id="result-area" class="result-area">
-      <div id="result-area" contenteditable="true" spellcheck="false"></div>
-    </div>
+    <div id="result-area" class="result-area">Your anthology will appear here</div>
     <script type="module" src="index.js"></script>
   </body>
 </html>

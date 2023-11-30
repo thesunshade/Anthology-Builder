@@ -58,6 +58,8 @@ buildButton.addEventListener("click", () => {
         }
       }
       resultsArea.innerHTML = anthologyText;
+      resultsArea.setAttribute("contenteditable", "true");
+      resultsArea.setAttribute("spellcheck", "false");
 
       // Select all <header> elements
       var headerElements = document.querySelectorAll("header");
@@ -148,7 +150,9 @@ function saveToFile(contentElement, contentProperty) {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = fileName + ".txt";
+    let extension = ".txt";
+    if (contentProperty == "innerHTML") extension = ".html";
+    a.download = fileName + extension;
     document.body.appendChild(a);
     a.click();
 
@@ -170,7 +174,6 @@ saveInstructionsButton.addEventListener("click", () => {
   saveToFile(buildInstructions, "value");
 });
 saveResultsButton.addEventListener("click", () => {
-  console.log(resultsArea);
   saveToFile(resultsArea, "innerHTML");
 });
 
