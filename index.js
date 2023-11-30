@@ -7,10 +7,24 @@ const clearButton = document.querySelector("#clear-input");
 const actionMessage = document.querySelector("#action-message");
 
 function parseInstructions(buildInstructions) {
+  const specialPrefixes = ["DN", "MN", "SN", "AN", "Kp", "Dhp", "Ud", "Snp", "Thag", "Thig"];
+
   const instructions = buildInstructions.value
     .split(/\r?\n/)
     .map(line => line.trim())
-    .filter(line => line !== "");
+    .filter(line => line !== "")
+    .filter(line => !line.startsWith("(")) // Filter out lines starting with '('
+    .map(line => {
+      for (const prefix of specialPrefixes) {
+        if (line.toUpperCase().startsWith(prefix.toUpperCase())) {
+          const prefixLength = prefix.length;
+          const trimmedLine = line.substring(prefixLength).trimLeft();
+          return `${prefix}${trimmedLine}`;
+        }
+      }
+      return line;
+    });
+  console.log(instructions);
   return instructions;
 }
 
@@ -67,13 +81,16 @@ buildButton.addEventListener("click", () => {
       resultsArea.setAttribute("contenteditable", "true");
       resultsArea.setAttribute("spellcheck", "false");
 
-      // Select all <header> elements
-      var headerElements = document.querySelectorAll("header");
+      function removeElements(selector) {
+        var elements = document.querySelectorAll(selector);
+        elements.forEach(function (element) {
+          element.remove();
+        });
+      }
 
-      // Loop through each <header> element and remove it
-      headerElements.forEach(function (headerElement) {
-        headerElement.remove();
-      });
+      removeElements("header");
+      removeElements("p.endkanda");
+      removeElements("blockquote.uddanagatha");
 
       // end processing
     })
