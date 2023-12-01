@@ -27,16 +27,19 @@ export function buildAnthology(buildInstructions) {
 
   const requests = instructions.map(instruction => {
     if (!markupCode(instruction)) {
+      let suttaId = instruction.split(":")[0];
+      console.log(suttaId);
       // Make the first API call (bilara)
-      const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${instruction.toLowerCase()}/sujato?lang=en`).then(response => response.json());
+      const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${suttaId.toLowerCase()}/sujato?lang=en`).then(response => response.json());
 
       // Make the second API call (suttaplex)
-      const suttaplexPromise = fetch(`https://suttacentral.net/api/suttaplex/${instruction.toLowerCase()}/?lang=en`).then(response => response.json());
+      const suttaplexPromise = fetch(`https://suttacentral.net/api/suttaplex/${suttaId.toLowerCase()}/?lang=en`).then(response => response.json());
 
       // Return a promise that resolves to the final object
       return Promise.all([bilaraPromise, suttaplexPromise]).then(([bilaraData, suttaplexData]) => ({
         bilara: bilaraData,
         suttaplex: suttaplexData,
+        instruction: instruction,
       }));
     } else {
       // If the instruction doesn't contain numbers, treat it as a resolved promise with a placeholder value
