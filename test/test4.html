@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Load File Content</title>
+  </head>
+  <body>
+    <button onclick="loadFile()">Load File</button>
+
+    <script>
+      function loadFile() {
+        // Create an input element of type 'file'
+        var input = document.createElement("input");
+        input.type = "file";
+
+        // Set up an event listener to handle file selection
+        input.addEventListener("change", function () {
+          var file = input.files[0];
+          if (file) {
+            // Use FileReader to read the contents of the file
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+              // e.target.result contains the contents of the file
+              var fileContent = e.target.result;
+              alert("File content:\n" + fileContent);
+            };
+
+            // Read the file as text
+            reader.readAsText(file);
+          }
+        });
+
+        // Trigger a click on the input element to open the file dialog
+        input.click();
+      }
+    </script>
+  </body>
+</html>

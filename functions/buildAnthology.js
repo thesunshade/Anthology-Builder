@@ -8,6 +8,8 @@ import { resultsArea } from "../index.js";
 export function buildAnthology(buildInstructions) {
   const instructions = parseInstructions(buildInstructions);
 
+  closeAllDetails();
+
   if (!buildInstructions.value) {
     resultsArea.innerHTML = `<p class="error">You'll need to add some build instruction first. Click on Help to learn more.</p>`;
 
@@ -16,14 +18,12 @@ export function buildAnthology(buildInstructions) {
   resultsArea.innerHTML = "";
 
   function closeAllDetails() {
-    var detailsElements = document.querySelectorAll("details");
+    let detailsElements = document.querySelectorAll("details");
 
     detailsElements.forEach(function (details) {
       details.open = false;
     });
   }
-
-  closeAllDetails();
 
   const requests = instructions.map(instruction => {
     if (!markupCode(instruction)) {
