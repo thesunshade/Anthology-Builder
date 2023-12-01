@@ -1,6 +1,8 @@
 export function generateTableOfContents() {
   const resultArea = document.getElementById("result-area");
-  const headings = resultArea.querySelectorAll("h1, h2, h3");
+  const headings = resultArea.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+  console.log("toc");
 
   if (!resultArea || headings.length === 0) {
     console.error("No result area or headings found.");

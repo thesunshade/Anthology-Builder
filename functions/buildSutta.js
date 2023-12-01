@@ -3,8 +3,13 @@ export function buildSutta(response) {
   const suttaplex = response.suttaplex[0];
   const { html_text, translation_text, root_text, keys_order } = bilara;
 
+  let suttaTitlesMarkup = "h3";
+  if (localStorage.suttaTitlesMarkup) {
+    suttaTitlesMarkup = localStorage.suttaTitlesMarkup;
+  }
+
   let htmlText = "";
-  htmlText += `<h3>${suttaplex.acronym} ${suttaplex.original_title}: ${suttaplex.translated_title}</h3>`;
+  htmlText += `<${suttaTitlesMarkup}>${suttaplex.acronym} ${suttaplex.original_title}: ${suttaplex.translated_title}</${suttaTitlesMarkup}>`;
 
   keys_order.forEach(segment => {
     if (translation_text[segment] === undefined) {

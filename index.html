@@ -48,6 +48,7 @@ kp9"></textarea>
     </div>
     <details>
       <summary><span class="button">Help</span></summary>
+
       <div class="help">
         <p>This tool will create an anthology of suttas from Bhante Sujato's translations based on your instructions.</p>
         <h2>Including Suttas</h2>
@@ -67,8 +68,21 @@ dhp1-20</pre
         >
         <h2>Ignoring Lines</h2>
         <p>All lines enclosed in parentheses will be ignored.</p>
+        <details>
+          <summary class="button-long">Advanced</summary>
+          <div class="help">
+            <p>It is possible to customize the anthology by adding settings to the beginning of the instructions:</p>
+            <pre>
+  {
+  "includeTableOfContents":false,
+  "suttaTitlesMarkup": "h3"
+  }</pre
+            >
+          </div>
+        </details>
       </div>
     </details>
+
     <div id="result-area" class="result-area"><i>Your anthology will appear here</i></div>
     <script type="module" src="index.js"></script>
   </body>

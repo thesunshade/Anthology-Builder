@@ -56,6 +56,10 @@ summary {
 
 }
 
+summary.button-long {
+    width: 6rem
+}
+
 .help {
     border-radius: 5px;
     border: solid 2px var(--accentColor);
