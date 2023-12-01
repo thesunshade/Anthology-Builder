@@ -4,6 +4,13 @@ export function buildSutta(response) {
   const suttaplex = response.suttaplex[0];
   const instruction = response.instruction;
   let [suttaId, range] = instruction.split(":");
+  let testForBaked = suttaId.split(">");
+  if (testForBaked[1] == undefined) {
+    suttaId = testForBaked[0];
+  } else {
+    suttaId = testForBaked[1];
+  }
+
   suttaId = suttaId.toLowerCase();
   console.log(suttaId, range);
   const { html_text, translation_text, root_text, keys_order } = bilara;

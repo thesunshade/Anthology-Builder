@@ -27,7 +27,7 @@ export function buildAnthology(buildInstructions) {
 
   const requests = instructions.map(instruction => {
     if (!markupCode(instruction)) {
-      let suttaId = instruction.split(":")[0];
+      let suttaId = instruction.split(/:|>/)[0];
       console.log(suttaId);
       // Make the first API call (bilara)
       const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${suttaId.toLowerCase()}/sujato?lang=en`).then(response => response.json());
