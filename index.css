@@ -10,6 +10,7 @@
 :root {
     --primaryColor: #01c2cc;
     --accentColor: #1b4547;
+    /* --offBlack: #280c40; */
     --offBlack: #10021c;
     --offLighterBlack: #1b0430;
     --offWhite: #ecfeff;
@@ -24,6 +25,11 @@ body {
     padding: 1rem;
     max-width: 50rem;
     margin: auto;
+    background-image: url('./images/lotus-3618153-min.svg');
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-attachment: fixed;
+    background-position: top center;
 }
 
 button span {
