@@ -120,7 +120,7 @@ summary.button-long {
     /* font-family: 'Roboto Mono', monospace; */
     font-family: 'Fira Code', monospace;
     border-radius: 5px;
-    border: solid 0;
+    border: solid 2px var(--accentColor);
     padding: 1rem;
     background-color: var(--gray);
     height: 15rem;
@@ -135,6 +135,22 @@ summary.button-long {
 
 .button-area {
     margin: 1rem auto;
+}
+
+button {
+    background-color: var(--gray);
+    border: none;
+    /* height: 1.5rem; */
+    border-radius: 5px;
+    padding: 3px 6px 3px 3px;
+    color: var(--offBlack);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--offWhite);
+    transform: translateY(-1px);
+    box-shadow: inset 0 0 2px var(--accentColor);
 }
 
 .row2,
@@ -159,7 +175,7 @@ summary.button-long {
     color: var(--accentColor);
     padding: 1rem;
     border-radius: 5px;
-    border: solid 0;
+    border: solid 2px var(--accentColor);
     padding: 1rem;
     max-width: 50rem;
     width: 100%;
@@ -280,4 +296,22 @@ p.added {
     .result-area blockquote {
         margin-left: 1rem
     }
+}
+
+
+/* scroll to top button*/
+
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primaryColor);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
