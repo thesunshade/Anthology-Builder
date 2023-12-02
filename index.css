@@ -94,6 +94,12 @@ summary.button-long {
     margin: 10px 0
 }
 
+.nested-help {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
 .help a {
     color: inherit
 }
@@ -107,13 +113,17 @@ summary.button-long {
 
 }
 
+.help p {
+    line-height: 1.5rem;
+}
+
 .highlight {
     display: inline-block;
     border: solid 0px;
     border-radius: 5px;
-    background-color: var(--gray);
-    color: var(--accentColor);
-    padding: 0 .2rem
+    background-color: var(--offBlack);
+    /* color: var(--accentColor); */
+    padding: 0 .1rem
 }
 
 .build-instructions {

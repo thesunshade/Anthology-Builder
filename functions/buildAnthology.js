@@ -28,7 +28,7 @@ export function buildAnthology(buildInstructions) {
   const requests = instructions.map(instruction => {
     if (!markupCode(instruction)) {
       let suttaId = instruction.split(/:|>/)[0];
-      console.log(suttaId);
+
       // Make the first API call (bilara)
       const bilaraPromise = fetch(`https://suttacentral.net/api/bilarasuttas/${suttaId.toLowerCase()}/sujato?lang=en`).then(response => response.json());
 
@@ -56,7 +56,6 @@ export function buildAnthology(buildInstructions) {
         const response = data[i];
         if (!response.error) {
           if (response.bilara.msg === "Not Found") {
-            console.log(instructions[i]);
             resultsArea.innerHTML = `<p class="error">The line:</p>
             <pre>${instructions[i]}</pre>
             <p class="error">is either an incorrect sutta ID or it is added text with a missing prefix (h1, h2, etc.)</p>`;

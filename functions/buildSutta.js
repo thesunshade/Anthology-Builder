@@ -1,5 +1,4 @@
 export function buildSutta(response) {
-  console.log(response);
   const bilara = response.bilara;
   const suttaplex = response.suttaplex[0];
   const instruction = response.instruction;
@@ -12,7 +11,7 @@ export function buildSutta(response) {
   }
 
   suttaId = suttaId.toLowerCase();
-  console.log(suttaId, range);
+
   const { html_text, translation_text, root_text, keys_order } = bilara;
 
   let keys = [...keys_order];
@@ -31,16 +30,12 @@ export function buildSutta(response) {
     let startRange = `${suttaId}:${start}`;
     let endRange = `${suttaId}:${end}`;
 
-    console.log(startRange, endRange);
-    console.log(keys_order);
-
     const startIndex = keys_order.indexOf(startRange);
     const endIndex = keys_order.indexOf(endRange);
 
     if (startIndex !== -1 && endIndex !== -1) {
       keys = keys_order.slice(startIndex, endIndex + 1);
     } else {
-      console.log("Start or end range not found in the array");
     }
   }
   keys.forEach(segment => {

@@ -82,39 +82,7 @@ kp9"></textarea>
     </div>
     <details>
       <summary><span class="button">Help</span></summary>
-
-      <div class="help">
-        <p>This tool will create an anthology of suttas from Bhante Sujato's translations based on your instructions.</p>
-        <h2>Including Suttas</h2>
-        <p>You will need to use the exact sutta id found in the url when viewing the sutta you want on SuttaCentral.com. For example, to include the first chapter of the Dhammapada, look at the url:</p>
-        <p>
-          <code>https://suttacentral.net/<span class="highlight">dhp1-20</span>/en/sujato</code>
-        </p>
-        <p>The highlighted part, <code>dhp1-20</code> is what you have to use. Put one sutta ID on each line. You may find the <a href="https://sutta.readingfaithfully.org">Citation Helper</a> usefull for obtaining working citations.</p>
-        <h2>Including custom text</h2>
-        <p>There are three types of custom text that can be included: heading leve 1 (h1), heading level 2 (h2), and paragraph text (p). Here is an example of all three:</p>
-        <pre>
-h1 My great Anthology
-h2 Section One
-p These are my favorites
-kp9
-dhp1-20</pre
-        >
-        <h2>Ignoring Lines</h2>
-        <p>All lines enclosed in parentheses will be ignored.</p>
-        <details>
-          <summary class="button-long">Advanced</summary>
-          <div class="help">
-            <p>It is possible to customize the anthology by adding settings to the beginning of the instructions:</p>
-            <pre>
-  {
-  "includeTableOfContents":false,
-  "suttaTitlesMarkup": "h3"
-  }</pre
-            >
-          </div>
-        </details>
-      </div>
+      <div id="help-area"></div>
     </details>
 
     <div id="result-area" class="result-area"><i>Your anthology will appear here</i></div>

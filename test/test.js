@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var clipboard = new ClipboardJS("#copyButton");
 
   clipboard.on("success", function (e) {
-    console.log("Rich text copied to clipboard");
     e.clearSelection();
   });
 
