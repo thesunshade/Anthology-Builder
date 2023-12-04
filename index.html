@@ -21,7 +21,10 @@
   </head>
 
   <body>
-    <p><img width="20" src="favicon.png" /> Enter the anthology build instructions:</p>
+    <p>
+      <img width="20" src="favicon.png" />
+      Enter the anthology build instructions:
+    </p>
     <textarea
       id="build-instructions"
       class="build-instructions"
@@ -35,48 +38,50 @@ kp9"></textarea>
       <div class="row1">
         <button id="build-button">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15">
-              <path style="fill: none; stroke-width: 1.5; stroke-linecap: butt; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 4" d="M12 22c5.525 0 10-4.475 10-10S17.525 2 12 2 2 6.475 2 12s4.475 10 10 10zm0 0" transform="scale(.625)" />
-              <path style="fill: none; stroke-width: 1.5; stroke-linecap: butt; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 4" d="m9 7.5 8 4.5-8 4.5zm0 0" transform="scale(.625)" />
-            </svg>
-            Build!</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#build-icon" /></svg>
+            Build!
+          </span>
         </button>
         <button id="load-file-button">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path style="fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 10" d="m8 8 4-4m0 0 4 4m-4-4v12m7 1v.6c0 1.331-1.069 2.4-2.4 2.4H7.4A2.393 2.393 0 0 1 5 17.6V17" transform="scale(.625)" /></svg> Load File</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#load-icon" /></svg>
+            Load File
+          </span>
         </button>
         <button id="clear-input" class="right-button">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path style="fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 10" d="m7.756 16.244 8.488-8.488m0 8.488L7.756 7.756M22 12c0 5.525-4.475 10-10 10S2 17.525 2 12 6.475 2 12 2s10 4.475 10 10zm0 0" transform="scale(.625)" /></svg>Clear</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#clear-icon" /></svg>
+            Clear
+          </span>
         </button>
         <span class="action-message" id="action-message"></span>
       </div>
       <div class="row2">
         <button id="copy-instructions">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path style="fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 10" d="M6 15h-.6A2.393 2.393 0 0 1 3 12.6V5.4C3 4.069 4.069 3 5.4 3h7.2C13.931 3 15 4.069 15 5.4V6m-3.6 3h7.2a2.4 2.4 0 0 1 2.4 2.4v7.2a2.4 2.4 0 0 1-2.4 2.4h-7.2A2.4 2.4 0 0 1 9 18.6v-7.2A2.4 2.4 0 0 1 11.4 9zm0 0" transform="scale(.625)" /></svg> Copy build instruction</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#copy-icon" /></svg>
+            Copy build instruction
+          </span>
         </button>
         <button id="save-instructions-button">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path style="fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 10" d="m8 12 4 4m0 0 4-4m-4 4V4m7 13v.6c0 1.331-1.069 2.4-2.4 2.4H7.4A2.393 2.393 0 0 1 5 17.6V17" transform="scale(.625)" /></svg>
-            Save build instruction</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#save-icon" /></svg>
+            Save build instruction
+          </span>
         </button>
       </div>
       <div class="row3">
         <button id="copy-result">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path style="fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 10" d="M6 15h-.6A2.393 2.393 0 0 1 3 12.6V5.4C3 4.069 4.069 3 5.4 3h7.2C13.931 3 15 4.069 15 5.4V6m-3.6 3h7.2a2.4 2.4 0 0 1 2.4 2.4v7.2a2.4 2.4 0 0 1-2.4 2.4h-7.2A2.4 2.4 0 0 1 9 18.6v-7.2A2.4 2.4 0 0 1 11.4 9zm0 0" transform="scale(.625)" /></svg> Copy HTML result</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#copy-icon" /></svg>
+            Copy HTML result
+          </span>
         </button>
         <button id="save-result-button">
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path style="fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke: #000; stroke-opacity: 1; stroke-miterlimit: 10" d="m8 12 4 4m0 0 4-4m-4 4V4m7 13v.6c0 1.331-1.069 2.4-2.4 2.4H7.4A2.393 2.393 0 0 1 5 17.6V17" transform="scale(.625)" /></svg> Save HTML result</span
-          >
+            <svg width="15" height="15"><use href="icons.svg#save-icon" /></svg>
+            Save HTML result
+          </span>
         </button>
       </div>
     </div>
@@ -87,7 +92,7 @@ kp9"></textarea>
 
     <div id="result-area" class="result-area"><i>Your anthology will appear here</i></div>
     <button id="scrollToTopBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="m8 12 4-4m0 0 4 4m-4-4v8M5.4 3h13.2A2.4 2.4 0 0 1 21 5.4v13.2a2.4 2.4 0 0 1-2.4 2.4H5.4A2.4 2.4 0 0 1 3 18.6V5.4A2.4 2.4 0 0 1 5.4 3Z" /></svg>
+      <svg width="24" height="24"><use href="icons.svg#scroll-icon" /></svg>
     </button>
     <script type="module" src="index.js"></script>
   </body>
