@@ -9,7 +9,9 @@ export default function parseInstructions(buildInstructions) {
 
   if (jsonMatch) {
     const jsonString = jsonMatch[0];
+    console.log(jsonString);
     const jsonObject = JSON.parse(jsonString);
+    console.log(jsonObject);
 
     // Save each key-value pair individually to localStorage
     for (const key in jsonObject) {

@@ -10,7 +10,6 @@ export const loadFileButton = document.querySelector("#load-file-button");
 export const copyInstructionsButton = document.querySelector("#copy-instructions");
 export const copyResultButton = document.querySelector("#copy-result");
 export const clearButton = document.querySelector("#clear-input");
-const actionMessage = document.querySelector("#action-message");
 export const saveInstructionsButton = document.querySelector("#save-instructions-button");
 export const saveResultsButton = document.querySelector("#save-result-button");
 

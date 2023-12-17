@@ -7,7 +7,7 @@ import { resultsArea } from "../index.js";
 
 export function buildAnthology(buildInstructions) {
   const instructions = parseInstructions(buildInstructions);
-
+  console.log(instructions);
   closeAllDetails();
 
   if (!buildInstructions.value) {
@@ -86,6 +86,6 @@ export function buildAnthology(buildInstructions) {
     })
     .catch(error => {
       // Handle errors here
-      console.error("Error fetching data:", error);
+      console.error("😳Error fetching data:", error);
     });
 }
